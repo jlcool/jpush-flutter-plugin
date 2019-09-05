@@ -145,7 +145,9 @@ static NSMutableArray<FlutterResult>* getRidResults;
     [self getRegistrationID:call result:result];
   } else if([@"sendLocalNotification"isEqualToString:call.method]) {
     [self sendLocalNotification:call result:result];
-  } else{
+  } else if([@"clearLocalNotifications"isEqualToString:call.method]) {
+       [self clearLocalNotifications:call result:result];
+     } else{
     result(FlutterMethodNotImplemented);
   }
 }
@@ -383,7 +385,12 @@ static NSMutableArray<FlutterResult>* getRidResults;
 
   result(@[@[]]);
 }
+- (void)clearLocalNotifications:(FlutterMethodCall*)call result:(FlutterResult)result {
+  JPushNotificationContent *content = [[JPushNotificationContent alloc] init];
+  [JPUSHService clearAllLocalNotifications];
 
+  result(@[@[]]);
+}
 
 
 - (void)dealloc {

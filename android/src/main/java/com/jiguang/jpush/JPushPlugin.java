@@ -90,7 +90,9 @@ public class JPushPlugin implements MethodCallHandler {
             getRegistrationID(call, result);
         } else if (call.method.equals("sendLocalNotification")) {
             sendLocalNotification(call, result);
-        } else {
+        } else if (call.method.equals("clearLocalNotifications")) {
+            clearLocalNotifications(call, result);
+        }else {
             result.notImplemented();
         }
     }
@@ -231,7 +233,13 @@ public class JPushPlugin implements MethodCallHandler {
             e.printStackTrace();
         }
     }
-
+    public void clearLocalNotifications(MethodCall call, Result result) {
+        try {
+            JPushInterface.clearLocalNotifications(registrar.context());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 接收自定义消息,通知,通知点击事件等事件的广播
