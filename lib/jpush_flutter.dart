@@ -218,10 +218,8 @@ class JPush {
     return notification.toMap().toString();
    }
 
-    Future<String> clearLocalNotifications() async {
+    Future clearLocalNotifications() async {
       await _channel.invokeMethod('sendLocalNotification');
-
-      return notification.toMap().toString();
     }
 }
 
