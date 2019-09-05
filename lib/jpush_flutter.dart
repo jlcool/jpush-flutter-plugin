@@ -219,7 +219,7 @@ class JPush {
    }
 
     Future clearLocalNotifications() async {
-      await _channel.invokeMethod('sendLocalNotification');
+      await _channel.invokeMethod('clearLocalNotifications');
     }
 }
 
