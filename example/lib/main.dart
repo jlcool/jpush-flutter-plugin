@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String debugLable = 'Unknown';
   final JPush jpush = new JPush();
+
   @override
   void initState() {
     super.initState();
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> {
     }
 
     jpush.setup(
-      appKey: "e58a32cb3e4469ebf31867e5", //你自己应用的 AppKey
+      appKey: "xxxxx", //你自己应用的 AppKey
       channel: "theChannel",
       production: false,
       debug: true,
@@ -92,7 +93,7 @@ class _MyAppState extends State<MyApp> {
           Container(
             margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
             color: Colors.brown,
-            child: Text(debugLable),
+            child: Text(debugLable ?? "Unknown"),
             width: 350,
             height: 100,
           ),
@@ -128,6 +129,7 @@ class _MyAppState extends State<MyApp> {
                     title: "getLaunchAppNotification",
                     onPressed: () {
                       jpush.getLaunchAppNotification().then((map) {
+                        print("flutter getLaunchAppNotification:$map");
                         setState(() {
                           debugLable = "getLaunchAppNotification success: $map";
                         });
